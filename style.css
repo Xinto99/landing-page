@@ -1,0 +1,438 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700;900&display=swap');
+
+:root {
+    --ruby: #9B111E;
+    --ruby-light: #E0115F;
+    --gold: #D4AF37;
+    --dark: #0F0F0F;
+    --light: #F8F9FA;
+    --glass: rgba(255, 255, 255, 0.05);
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--dark);
+    color: var(--light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    color: var(--light); /* Ensure default is bright */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Header & Nav */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 0;
+    transition: var(--transition);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+nav.scrolled {
+    background: rgba(15, 15, 15, 0.8);
+    backdrop-filter: blur(20px);
+    padding: 1rem 0;
+}
+
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--ruby-light);
+    text-decoration: none;
+    letter-spacing: -1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--light);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transition);
+    opacity: 0.8;
+}
+
+.nav-links a:hover {
+    color: var(--ruby-light);
+    opacity: 1;
+}
+
+.lang-switch {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-left: 2rem;
+    border-left: 1px solid rgba(255,255,255,0.2);
+    padding-left: 1rem;
+}
+
+.lang-switch a {
+    text-decoration: none;
+    color: var(--light);
+    font-size: 0.8rem;
+    font-weight: 600;
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.lang-switch a.active {
+    opacity: 1;
+    color: var(--gold);
+}
+
+header {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4) saturate(1.2);
+    transition: transform 10s ease;
+}
+
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9));
+}
+
+header:hover .hero-bg img {
+    transform: scale(1.1);
+}
+
+.hero-content {
+    z-index: 1;
+    max-width: 800px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(90deg, var(--ruby), var(--ruby-light));
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeInUp 1s ease forwards;
+}
+
+h1 {
+    font-size: clamp(3rem, 10vw, 5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #ffffff, #ffffff); /* Pure white for maximum visibility */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    animation: fadeInUp 1s ease 0.2s forwards;
+    opacity: 0;
+}
+
+.hero-desc {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 1s ease 0.4s forwards;
+    opacity: 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1.2rem 2.5rem;
+    background-color: var(--light);
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: var(--transition);
+    animation: fadeInUp 1s ease 0.6s forwards;
+    opacity: 0;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    background-color: var(--gold);
+}
+
+/* Sections */
+section {
+    padding: 8rem 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.section-title .underline {
+    width: 60px;
+    height: 4px;
+    background: var(--ruby);
+    margin: 0 auto;
+}
+
+/* Info Grid */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.info-card {
+    background: var(--glass);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+
+.info-card:hover {
+    border-color: var(--ruby-light);
+    transform: translateY(-10px);
+}
+
+.info-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--gold);
+}
+
+/* Feature Section */
+.feature-row {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+.feature-row:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.feature-img {
+    flex: 1;
+    border-radius: 30px;
+    overflow: hidden;
+    height: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.feature-text {
+    flex: 1;
+}
+
+.feature-text h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--ruby-light);
+}
+
+/* Benefits Section */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.benefit-card {
+    text-align: center;
+    padding: 2rem;
+    transition: var(--transition);
+}
+
+.benefit-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, var(--ruby), var(--ruby-light));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    box-shadow: 0 10px 20px rgba(155, 17, 30, 0.2);
+}
+
+.benefit-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--gold);
+}
+
+.benefit-card p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Seasonal Banner */
+.seasonal {
+    background: linear-gradient(45deg, var(--ruby), var(--ruby-light));
+    border-radius: 30px;
+    padding: 5rem;
+    text-align: center;
+}
+
+.seasonal h2 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    .hero-content {
+        text-align: center;
+        margin: 0 auto;
+    }
+    
+    h1 {
+        font-size: 4rem;
+    }
+    
+    .feature-row {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav .nav-links {
+        display: none; /* Simple approach: hide on mobile, could add a menu later if needed */
+    }
+    
+    .lang-switch {
+        margin-left: 0;
+        border: none;
+        padding-left: 0;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+    
+    .hero-desc {
+        font-size: 1rem;
+    }
+
+    section {
+        padding: 5rem 0;
+    }
+
+    .section-title h2 {
+        font-size: 2.25rem;
+    }
+
+    .feature-row, .feature-row:nth-child(even) {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .feature-img {
+        width: 100%;
+        height: 300px;
+    }
+    
+    .seasonal {
+        padding: 3rem 1.5rem;
+    }
+    
+    .seasonal h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .btn {
+        padding: 1rem 2rem;
+        width: 100%;
+        text-align: center;
+    }
+}
